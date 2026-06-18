@@ -1,10 +1,10 @@
-﻿# Daily Product Monitoring 🛒
+# Daily Product Monitoring
 
 亚马逊产品日常监控系统，包含**评论评分追踪**和**竞品多维监控**两大模块，支持浏览器指纹伪装、SQLite 持久化存储、HTML 邮件报告和 Excel 数据导出。
 
 ## 功能概览
 
-### 📊 评论评分追踪 (eview_tracker)
+### 评论评分追踪 (`review_tracker`)
 
 每日自动抓取指定产品的评分和评论数，对比历史数据，生成 HTML 报告并通过邮件发送。
 
@@ -13,7 +13,7 @@
 - 全内联样式 HTML 报告（兼容 QQ 邮箱 / Gmail）
 - 反爬伪装：curl_cffi 浏览器指纹 + 随机间隔 + 指数退避
 
-### 🔍 竞品多维监控 (competitor_monitor)
+### 竞品多维监控 (`competitor_monitor`)
 
 批量抓取多个 ASIN 的 10 项关键指标，输出符合运营习惯的 Excel 报表。
 
@@ -30,13 +30,13 @@
 | 购物车卖家 | Buy Box 卖家信息 |
 | 其他 | AC 标等附加信息 |
 
-### 🛡️ 共用请求层 (shared)
+### 共用请求层 (`shared`)
 
-基于 curl_cffi 的统一抓取层，支持多种浏览器 TLS 指纹伪装，自动检测验证码页面并触发冷却退避。
+基于 `curl_cffi` 的统一抓取层，支持多种浏览器 TLS 指纹伪装，自动检测验证码页面并触发冷却退避。
 
 ## 项目结构
 
-`
+```
 Daily-Product-Monitoring/
 ├── shared/                          # 共用请求层
 │   ├── __init__.py
@@ -74,7 +74,7 @@ Daily-Product-Monitoring/
 ├── requirements.txt                 # Python 依赖
 ├── .gitignore
 └── README.md
-`
+```
 
 ## 快速开始
 
@@ -85,15 +85,15 @@ Daily-Product-Monitoring/
 
 ### 安装
 
-`ash
+```bash
 git clone https://github.com/383766159/Daily-Product-Monitoring.git
 cd Daily-Product-Monitoring
 pip install -r requirements.txt
-`
+```
 
 ### 配置
 
-`ash
+```bash
 # 评论追踪配置
 cp review_tracker/config.yaml.example review_tracker/config.yaml
 # 编辑 config.yaml，填入邮箱 SMTP 信息和要追踪的产品链接
@@ -101,11 +101,11 @@ cp review_tracker/config.yaml.example review_tracker/config.yaml
 # 竞品监控配置
 cp competitor_monitor/config.yaml.example competitor_monitor/config.yaml
 # 编辑 config.yaml，填入要监控的 ASIN 列表
-`
+```
 
 ### 运行
 
-`ash
+```bash
 # 评论评分追踪（每日抓取 + 报告 + 邮件）
 python -m review_tracker.tracker
 
@@ -120,25 +120,25 @@ python -m competitor_monitor.monitor
 
 # 竞品监控 + 发送邮件
 python -m competitor_monitor.monitor --email
-`
+```
 
 ## 依赖
 
 | 库 | 用途 |
 |----|------|
-| equests | HTTP 基础请求 |
-| eautifulsoup4 | HTML 解析 |
-| lxml | XML / HTML 快速解析器 |
-| curl_cffi | TLS 浏览器指纹伪装 |
-| pyyaml | 配置文件解析 |
-| openpyxl | Excel 读写 |
+| `requests` | HTTP 基础请求 |
+| `beautifulsoup4` | HTML 解析 |
+| `lxml` | XML / HTML 快速解析器 |
+| `curl_cffi` | TLS 浏览器指纹伪装 |
+| `pyyaml` | 配置文件解析 |
+| `openpyxl` | Excel 读写 |
 
 ## 注意事项
 
-- **配置文件**: config.yaml 包含敏感信息（邮箱密码等），已被 .gitignore 排除。请从 .example 模板复制后自行填写。
+- **配置文件**: `config.yaml` 包含敏感信息（邮箱密码等），已被 `.gitignore` 排除。请从 `.example` 模板复制后自行填写。
 - **请求频率**: 默认请求间隔 3-10 秒，避免触发亚马逊反爬机制。
 - **反爬策略**: 当检测到验证码页面时，自动进入 10-20 秒冷却退避。
-- **数据存储**: 评论追踪数据存储在 SQLite 数据库中（eview_tracker/data/tracker.db），竞品监控输出为 Excel 文件（competitor_monitor/outputs/）。
+- **数据存储**: 评论追踪数据存储在 SQLite 数据库中（`review_tracker/data/tracker.db`），竞品监控输出为 Excel 文件（`competitor_monitor/outputs/`）。
 
 ## License
 
