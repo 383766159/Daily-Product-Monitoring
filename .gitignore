@@ -4,3 +4,9 @@ __pycache__/
 report_*.html
 .env
 *.egg-info/
+*.xlsx
+competitor_monitor/outputs/
+.vscode/
+.idea/
+*.pyo
+config.yaml

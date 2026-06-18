@@ -1,14 +1,15 @@
 ﻿# ============================================================
 # 亚马逊评论追踪系统 - 配置文件
+# 复制此文件为 config.yaml 并填入真实信息
 # ============================================================
 
 # ---------- 邮件配置 ----------
 email:
   smtp_host: smtp.qq.com
   smtp_port: 587
-  sender: 383766159@qq.com
-  password: yinbwzopbitnbhij
-  recipient: 383766159@qq.com
+  sender: your_email@qq.com
+  password: your_smtp_app_password
+  recipient: recipient@example.com
 
 # ---------- 抓取配置 ----------
 scraper:
@@ -20,5 +21,5 @@ scraper:
 
 # ---------- 要跟踪的产品列表 ----------
 products:
-  - url: https://www.amazon.com/dp/B0GSQ2WH13
-  - url: https://www.amazon.com/dp/B0GSPPNNQG
+  - url: https://www.amazon.com/dp/B0XXXXXXXX
+  - url: https://www.amazon.com/dp/B0XXXXXXXX

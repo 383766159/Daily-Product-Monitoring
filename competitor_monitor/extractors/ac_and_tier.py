@@ -4,8 +4,22 @@ from bs4 import BeautifulSoup
 
 def extract_ac_badge(soup: BeautifulSoup) -> bool:
     """是否 Amazon's Choice"""
-    ac = soup.select_one("[data-hook='amzn-choice-badge'], #acBadge_feature_div .a-badge-label")
-    return ac is not None
+    selectors = [
+        ".mvt-ac-badge-rectangle",
+        '[data-hook="amzn-choice-badge"]',
+        "#acBadge_feature_div .a-badge-label",
+        '[class*="ac-badge"] span',
+    ]
+    for sel in selectors:
+        try:
+            els = soup.select(sel)
+            for el in els:
+                txt = el.get_text(strip=True).lower()
+                if "amazon" in txt and ("choice" in txt):
+                    return True
+        except Exception:
+            pass
+    return False
 
 
 def extract_tier_discount(soup: BeautifulSoup) -> str:
@@ -21,5 +35,5 @@ def extract_other(soup: BeautifulSoup) -> str:
         parts.append("AC")
     tier = extract_tier_discount(soup)
     if tier:
-        parts.append(f"\u9636\u68af:{tier}")  # 阶梯:xxx
-    return "\uff1b".join(parts) if parts else "/"  # ；分隔
+        parts.append(f"阶梯:{tier}")
+    return "；".join(parts) if parts else "/"
