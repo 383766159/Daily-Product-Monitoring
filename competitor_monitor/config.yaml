@@ -1,0 +1,22 @@
+﻿# ============================================================
+# 竞品监控 - 配置文件
+# ============================================================
+
+# 要监控的 ASIN 列表（按 Excel 列顺序排列）
+asins:
+  - B0DJM4Q4BZ
+  - B0B4ZSKPNL
+  - B0DY4S3HP2
+  - B0C3QQMMRJ
+  - B09YGT8CZ5
+  - B09WHV1NJL
+
+# 抓取配置（加大间隔避免反爬）
+scraper:
+  interval_min: 5
+  interval_max: 10
+  timeout: 20
+  max_retries: 3
+
+# Excel 输出目录
+output_dir: outputs
