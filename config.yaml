@@ -1,0 +1,24 @@
+﻿# ============================================================
+# 亚马逊评论追踪系统 - 配置文件
+# ============================================================
+
+# ---------- 邮件配置 ----------
+email:
+  smtp_host: smtp.qq.com
+  smtp_port: 587
+  sender: 383766159@qq.com
+  password: yinbwzopbitnbhij
+  recipient: 383766159@qq.com
+
+# ---------- 抓取配置 ----------
+scraper:
+  request_interval_min: 3
+  request_interval_max: 6
+  timeout: 15
+  max_retries: 3
+  language: en_US
+
+# ---------- 要跟踪的产品列表 ----------
+products:
+  - url: https://www.amazon.com/dp/B0GSQ2WH13
+  - url: https://www.amazon.com/dp/B0GSPPNNQG
